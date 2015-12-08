@@ -1,9 +1,10 @@
 use v6;
 
-use Pod::NodeWalker;
+use Pod::TreeWalker;
+use Pod::TreeWalker::Listener;
 
-class Outliner does Pod::NodeListener {
-    has Pod::NodeWalker $!walker = Pod::NodeWalker.new( :listener(self) );
+class Outliner does Pod::TreeWalker::Listener {
+    has Pod::TreeWalker $!walker = Pod::TreeWalker.new( :listener(self) );
     has $!seen = 0;
 
     method walk ($pod) {
